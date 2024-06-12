@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:pocketid_kes/Register/register.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -9,17 +12,28 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
-
-  void initState(){
+  void initState() {
     super.initState();
-  Future.delayed(
-    const Duration(seconds: 3),
-      (){
-      Navigator.pushReplacement(context, "/home");
-      }
-  );
-
+    Timer(const Duration(seconds: 3), () {
+      Navigator.pushReplacement(
+          context,
+          PageRouteBuilder(
+              transitionDuration: const Duration(seconds: 3),
+              transitionsBuilder: ((context, animation, animationtime, child) {
+                animation = CurvedAnimation(
+                    parent: animation, curve: Curves.elasticInOut);
+                return ScaleTransition(
+                  scale: animation,
+                  alignment: Alignment.center,
+                  child: child,
+                );
+              }),
+              pageBuilder: ((context, animation, animationtime) {
+                return const Register();
+              }),),);
+    });
   }
+
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: Color.fromARGB(255, 55, 14, 201),
@@ -27,10 +41,10 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.account_balance_outlined,
+            Icon(
+              Icons.account_balance_outlined,
               color: Colors.white,
               size: 80,
-
             ),
             Text(
               "Pocket_ID",
@@ -40,18 +54,17 @@ class _SplashScreenState extends State<SplashScreen> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             SizedBox(
               width: 150,
               child: LinearProgressIndicator(
-                
                 backgroundColor: Color.fromARGB(82, 158, 158, 158),
                 minHeight: 6,
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                
               ),
             )
-
           ],
         ),
       ),
