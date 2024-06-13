@@ -24,10 +24,11 @@ class _RegisterState extends State<Register> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                height: 70,
+                height: 120,
               ),
               Icon(
                 Icons.account_balance_wallet_outlined,
+
                 color: Colors.white,
                 size: 90,
               ),
