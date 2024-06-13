@@ -46,7 +46,7 @@ class _RegisterState extends State<Register> {
                         child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 35.0),
                       child: Container(
-                        height: 300,
+                        height: 360,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(25),
@@ -75,6 +75,48 @@ class _RegisterState extends State<Register> {
                                   fontSize: 15,
                                 ),
                               ),
+                            ),
+                            Container(
+                              height: 43,
+                              width: 150,
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 55, 14, 201),
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: TextButton(
+                                onPressed: () {},
+                                child: Text(
+                                  "Sign Up",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Already have an account?",
+                                  style: TextStyle(
+                                      color: Colors.grey, fontSize: 15),
+                                ),
+                                TextButton(
+                                  onPressed: () {},
+                                  child: Text(
+                                    "Sign in",
+                                    style: TextStyle(
+                                      color: Color.fromARGB(255, 55, 14, 201),
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
