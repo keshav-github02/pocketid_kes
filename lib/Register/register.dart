@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pocketid_kes/HomePage/HomePage.dart';
 import 'package:pocketid_kes/utils/reusable.dart';
-
+import 'dart:math' as Math;
 class Register extends StatefulWidget {
   const Register({super.key});
 
@@ -26,11 +27,14 @@ class _RegisterState extends State<Register> {
               SizedBox(
                 height: 120,
               ),
-              Icon(
-                Icons.account_balance_wallet_outlined,
+              Transform.rotate(
+                angle: Math.pi/0.304,
+                child: Icon(
+                  Icons.account_balance_wallet_outlined,
 
-                color: Colors.white,
-                size: 90,
+                  color: Colors.white,
+                  size: 90,
+                ),
               ),
               Text(
                 "Pocket_ID",
@@ -85,7 +89,9 @@ class _RegisterState extends State<Register> {
                                 borderRadius: BorderRadius.circular(50),
                               ),
                               child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MyHomePage()));
+                                },
                                 child: Text(
                                   "Sign Up",
                                   style: TextStyle(
