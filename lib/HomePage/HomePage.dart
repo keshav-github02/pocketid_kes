@@ -27,6 +27,13 @@ class _MyHomePageState extends State<MyHomePage> {
   String lastName = "Loading....";
   String docName = "Loading...";
 
+  Future<String>getDocInfo(String Doc) async{
+    //get the doc info from the database
+    //return the doc info if its exist
+    //else it will return "empty"
+    return "empty";
+  }
+
   Container headingContainer({text, double? size}) {
     return Container(
       height: 40,
@@ -115,6 +122,148 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  SizedBox ExtractedContainer({text, image, doc, isSaved}) {
+    bool showDoc = false;
+    return SizedBox(
+      width: 320,
+      height: 400,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: 280,
+            height: 170,
+            child: ElevatedButton(
+              onPressed: () {},
+              style: ButtonStyle(
+                shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+                foregroundColor: MaterialStateProperty.resolveWith((states){
+                  if(states.contains(MaterialState.pressed)){
+                    return Colors.white;
+                  }
+                  else{
+                    return Colors.white;
+                  }
+                }),
+                backgroundColor: MaterialStateProperty.resolveWith((states) {
+                  if (states.contains(MaterialState.pressed)) {
+                    return Colors.white;
+                  }
+                  else {
+                    return Colors.white;
+                  }
+                }),
+
+
+            ),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SizedBox(
+                        height: 70,
+                        width: 70,
+                        child: Image.asset("$image"),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "$text",
+                            style: const TextStyle(
+                              letterSpacing: 0.8,
+                              fontFamily: "Poppins-Reg",
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            "XXXX-XXXX-XXXXX",
+                            style: TextStyle(
+                                color: Colors.black45, fontFamily: "Lato-Reg"),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  FutureBuilder(
+                    future: getDocInfo(doc),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Text(
+                          "Save Now",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                          ),
+                        );
+                      } else {
+                        if (snapshot.data == "empty") {
+                          return Container(
+                            height: 45,
+                            width: 219,
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 55, 14, 201),
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Save Now",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15,
+                                ),
+                              ),
+                            ),
+                          );
+                        } else {
+                          return Container(
+                            height: 45,
+                            width: 219,
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 55, 14, 201),
+                              borderRadius: BorderRadius.circular(50),
+                              border: Border.all(
+                                color: Color.fromARGB(255, 55, 14, 201),
+                                width: 1,
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "View Now",
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 55, 14, 201),
+                                  fontSize: 15,
+                                ),
+                              ),
+                            ),
+                          );
+                        }
+                      }
+                    },
+                  )
+                ],
+              ),
+          ),
+          )],
       ),
     );
   }
@@ -249,14 +398,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       children: [
                         CarouselSlider(
                           items: [
-                            Container(
+                            SizedBox(
                               height: 250,
                               child: Image.asset(
                                 imageList[0],
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               height: 250,
                               child: Image.asset(
                                 imageList[1],
@@ -289,9 +438,26 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: [
-                      SizedBox(
-                        width: 15,
-                      ),
+                      ExtractedContainer(
+                          text: "Aadhar Card",
+                          image: "assets/aadhaar.png",
+                          doc: "aadhar",
+                          isSaved: 1),
+                      ExtractedContainer(
+                          text: "Pan Card",
+                          image: "assets/pan.png",
+                          doc: "aadhar",
+                          isSaved: 2),
+                      ExtractedContainer(
+                          text: "Driving License",
+                          image: "assets/others.png",
+                          doc: "driving",
+                          isSaved: 3),
+                      ExtractedContainer(
+                          text: "Covid Vaccine",
+                          image: "assets/others.png",
+                          doc: "vaccine",
+                          isSaved: 4),
                       //remaining elements
                     ],
                   ),
@@ -318,7 +484,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Padding(
                   padding: EdgeInsets.all(10),
-                  child: Container(
+                  child: SizedBox(
                     height: 50,
                     child: ListView(
                       scrollDirection: Axis.horizontal,
