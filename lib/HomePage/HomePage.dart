@@ -27,7 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String lastName = "Loading....";
   String docName = "Loading...";
 
-  Future<String>getDocInfo(String Doc) async{
+  Future<String>getDocInfo(String doc) async{
     //get the doc info from the database
     //return the doc info if its exist
     //else it will return "empty"
@@ -60,11 +60,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
                     border: Border.all(
-                      color: Color.fromARGB(255, 55, 14, 201),
+                      color: const Color.fromARGB(255, 55, 14, 201),
                       width: 1,
                     ),
                   ),
-                  child: Padding(
+                  child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                     child: Text(
                       "View All",
@@ -77,13 +77,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 )
               : (text != "What's New")
-                  ? Text(
+                  ? const Text(
                       "View All",
                       style: TextStyle(
                           fontSize: 15,
                           color: Color.fromARGB(255, 55, 14, 201)),
                     )
-                  : Text(""),
+                  : const Text(""),
         ],
       ),
     );
@@ -126,7 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  SizedBox ExtractedContainer({text, image, doc, isSaved}) {
+  SizedBox extractedContainer({text, image, doc, isSaved}) {
     bool showDoc = false;
     return SizedBox(
       width: 320,
@@ -146,16 +146,16 @@ class _MyHomePageState extends State<MyHomePage> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                foregroundColor: MaterialStateProperty.resolveWith((states){
-                  if(states.contains(MaterialState.pressed)){
+                foregroundColor: WidgetStateProperty.resolveWith((states){
+                  if(states.contains(WidgetState.pressed)){
                     return Colors.white;
                   }
                   else{
                     return Colors.white;
                   }
                 }),
-                backgroundColor: MaterialStateProperty.resolveWith((states) {
-                  if (states.contains(MaterialState.pressed)) {
+                backgroundColor: WidgetStateProperty.resolveWith((states) {
+                  if (states.contains(WidgetState.pressed)) {
                     return Colors.white;
                   }
                   else {
@@ -167,7 +167,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Row(
@@ -192,7 +192,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Text(
+                          const Text(
                             "XXXX-XXXX-XXXXX",
                             style: TextStyle(
                                 color: Colors.black45, fontFamily: "Lato-Reg"),
@@ -201,14 +201,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   FutureBuilder(
                     future: getDocInfo(doc),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Text(
+                        return const Text(
                           "Save Now",
                           style: TextStyle(
                             color: Colors.white,
@@ -221,10 +221,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             height: 45,
                             width: 219,
                             decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 55, 14, 201),
+                              color: const Color.fromARGB(255, 55, 14, 201),
                               borderRadius: BorderRadius.circular(50),
                             ),
-                            child: Center(
+                            child: const Center(
                               child: Text(
                                 "Save Now",
                                 style: TextStyle(
@@ -239,14 +239,14 @@ class _MyHomePageState extends State<MyHomePage> {
                             height: 45,
                             width: 219,
                             decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 55, 14, 201),
+                              color: const Color.fromARGB(255, 55, 14, 201),
                               borderRadius: BorderRadius.circular(50),
                               border: Border.all(
-                                color: Color.fromARGB(255, 55, 14, 201),
+                                color: const Color.fromARGB(255, 55, 14, 201),
                                 width: 1,
                               ),
                             ),
-                            child: Center(
+                            child: const Center(
                               child: Text(
                                 "View Now",
                                 style: TextStyle(
@@ -268,6 +268,34 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  SizedBox extractedBox({text,image}){
+    return SizedBox(
+      height: 200,
+      width: 230,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            height: 185,
+            width: 195,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromARGB(130, 158, 158, 158),
+                  spreadRadius: 0,
+                  blurRadius: 0,
+                  offset: Offset(1, 2),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -275,12 +303,12 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        foregroundColor: Color.fromARGB(255, 55, 14, 201),
+        foregroundColor: const Color.fromARGB(255, 55, 14, 201),
         title: Row(
           children: [
             Transform.rotate(
               angle: math.pi / 0.299,
-              child: Icon(
+              child: const Icon(
                 Icons.account_balance_wallet_outlined,
                 color: Colors.white,
                 size: 30,
@@ -289,7 +317,7 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(
               width: 8,
             ),
-            Text(
+            const Text(
               "Pocket ID",
               style: TextStyle(
                   color: Colors.white,
@@ -305,220 +333,218 @@ class _MyHomePageState extends State<MyHomePage> {
       // ),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              children: [
-                Column(
-                  children: [
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Row(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Hello',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 30,
-                                        fontWeight: FontWeight.normal),
-                                  ),
-                                  SizedBox(
-                                    width: 3,
-                                  ),
-                                  Text(
-                                    "Jhon",
-                                    style: TextStyle(
-                                      color: Color.fromARGB(255, 55, 14, 201),
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Text(
-                                "Welcome back to PocketID",
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    CircleAvatar(
-                      radius: 23,
-                      backgroundColor: Color.fromARGB(255, 55, 14, 201),
-                      child: Container(
-                        height: 37,
-                        width: 37,
-                        clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: CircularProgressIndicator(),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                headingContainer(text: "What's New", size: 15),
-                SizedBox(
-                  height: 10,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Container(
-                    height: 200,
-                    clipBehavior: Clip.hardEdge,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color.fromARGB(255, 55, 14, 201),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: const Offset(0, 3),
-                        ),
-                      ],
-                    ),
-                    child: ListView(
+          child: Column(
+            children: [
+              Column(
+                children: [
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: const Row(
                       children: [
-                        CarouselSlider(
-                          items: [
-                            SizedBox(
-                              height: 250,
-                              child: Image.asset(
-                                imageList[0],
-                                fit: BoxFit.cover,
-                              ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Hello',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.normal),
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Text(
+                                  "Jhon",
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 55, 14, 201),
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                ),
+                              ],
                             ),
-                            SizedBox(
-                              height: 250,
-                              child: Image.asset(
-                                imageList[1],
-                                fit: BoxFit.cover,
+                            Text(
+                              "Welcome back to PocketID",
+                              style: TextStyle(
+                                color: Colors.grey,
                               ),
                             ),
                           ],
-                          options: CarouselOptions(
-                            autoPlay: true,
-                            height: 200,
-                            autoPlayCurve: Curves.easeOut,
-                            enableInfiniteScroll: true,
-                            autoPlayAnimationDuration:
-                                const Duration(milliseconds: 1800),
-                            viewportFraction: 1,
-                          ),
                         ),
-                        // Document Container
-                        // Other Document Container
                       ],
                     ),
                   ),
-                ),
-                headingContainer(
-                  text: "Issued Documents",
-                  size: 16,
-                ),
-                SizedBox(
-                  height: 190,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      ExtractedContainer(
-                          text: "Aadhar Card",
-                          image: "assets/aadhaar.png",
-                          doc: "aadhar",
-                          isSaved: 1),
-                      ExtractedContainer(
-                          text: "Pan Card",
-                          image: "assets/pan.png",
-                          doc: "aadhar",
-                          isSaved: 2),
-                      ExtractedContainer(
-                          text: "Driving License",
-                          image: "assets/others.png",
-                          doc: "driving",
-                          isSaved: 3),
-                      ExtractedContainer(
-                          text: "Covid Vaccine",
-                          image: "assets/others.png",
-                          doc: "vaccine",
-                          isSaved: 4),
-                      //remaining elements
-                    ],
-                  ),
-                ),
-                headingContainer(
-                  text: "Other Documents",
-                  size: 16,
-                ),
-                SizedBox(
-                  height: 220,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      SizedBox(
-                        width: 15,
+                  CircleAvatar(
+                    radius: 23,
+                    backgroundColor: const Color.fromARGB(255, 55, 14, 201),
+                    child: Container(
+                      height: 37,
+                      width: 37,
+                      clipBehavior: Clip.hardEdge,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
                       ),
-                      //remaining elements
+                      child: const CircularProgressIndicator(),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              headingContainer(text: "What's New", size: 15),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Container(
+                  height: 200,
+                  clipBehavior: Clip.hardEdge,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color.fromARGB(255, 55, 14, 201),
+                        spreadRadius: 2,
+                        blurRadius: 5,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: ListView(
+                    children: [
+                      CarouselSlider(
+                        items: [
+                          SizedBox(
+                            height: 250,
+                            child: Image.asset(
+                              imageList[0],
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 250,
+                            child: Image.asset(
+                              imageList[1],
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ],
+                        options: CarouselOptions(
+                          autoPlay: true,
+                          height: 200,
+                          autoPlayCurve: Curves.easeOut,
+                          enableInfiniteScroll: true,
+                          autoPlayAnimationDuration:
+                              const Duration(milliseconds: 1800),
+                          viewportFraction: 1,
+                        ),
+                      ),
+                      // Document Container
+                      // Other Document Container
                     ],
                   ),
                 ),
-                headingContainer(
-                  text: "Quick Links",
-                  size: 18,
+              ),
+              headingContainer(
+                text: "Issued Documents",
+                size: 16,
+              ),
+              SizedBox(
+                height: 190,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    extractedContainer(
+                        text: "Aadhar Card",
+                        image: "assets/aadhaar.png",
+                        doc: "aadhar",
+                        isSaved: 1),
+                    extractedContainer(
+                        text: "Pan Card",
+                        image: "assets/pan.png",
+                        doc: "aadhar",
+                        isSaved: 2),
+                    extractedContainer(
+                        text: "Driving License",
+                        image: "assets/others.png",
+                        doc: "driving",
+                        isSaved: 3),
+                    extractedContainer(
+                        text: "Covid Vaccine",
+                        image: "assets/others.png",
+                        doc: "vaccine",
+                        isSaved: 4),
+                    //remaining elements
+                  ],
                 ),
-                Padding(
-                  padding: EdgeInsets.all(10),
-                  child: SizedBox(
-                    height: 50,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        SizedBox(
-                          width: 10,
-                        ),
-                        quickLinks(
-                            text: "My Profile",
-                            icon: Icons.person_add_alt_1_outlined,
-                            ontap: () {}),
-                        SizedBox(
-                          width: 25,
-                        ),
-                        quickLinks(
-                            text: "Forget Pin",
-                            icon: Icons.help_outline_rounded,
-                            ontap: () {}),
-                        SizedBox(
-                          width: 25,
-                        ),
-                        quickLinks(
-                            text: "About",
-                            icon: Icons.info_outline_rounded,
-                            ontap: () {}),
-                        SizedBox(
-                          width: 25,
-                        ),
-                      ],
+              ),
+              headingContainer(
+                text: "Other Documents",
+                size: 16,
+              ),
+              SizedBox(
+                height: 220,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: const [
+                    SizedBox(
+                      width: 15,
                     ),
+                    //remaining elements
+                  ],
+                ),
+              ),
+              headingContainer(
+                text: "Quick Links",
+                size: 18,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: SizedBox(
+                  height: 50,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      quickLinks(
+                          text: "My Profile",
+                          icon: Icons.person_add_alt_1_outlined,
+                          ontap: () {}),
+                      const SizedBox(
+                        width: 25,
+                      ),
+                      quickLinks(
+                          text: "Forget Pin",
+                          icon: Icons.help_outline_rounded,
+                          ontap: () {}),
+                      const SizedBox(
+                        width: 25,
+                      ),
+                      quickLinks(
+                          text: "About",
+                          icon: Icons.info_outline_rounded,
+                          ontap: () {}),
+                      const SizedBox(
+                        width: 25,
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
