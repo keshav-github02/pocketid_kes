@@ -27,7 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String lastName = "Loading....";
   String docName = "Loading...";
 
-  Future<String>getDocInfo(String doc) async{
+  Future<String> getDocInfo(String doc) async {
     //get the doc info from the database
     //return the doc info if its exist
     //else it will return "empty"
@@ -146,25 +146,21 @@ class _MyHomePageState extends State<MyHomePage> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                foregroundColor: WidgetStateProperty.resolveWith((states){
-                  if(states.contains(WidgetState.pressed)){
+                foregroundColor: WidgetStateProperty.resolveWith((states) {
+                  if (states.contains(WidgetState.pressed)) {
                     return Colors.white;
-                  }
-                  else{
+                  } else {
                     return Colors.white;
                   }
                 }),
                 backgroundColor: WidgetStateProperty.resolveWith((states) {
                   if (states.contains(WidgetState.pressed)) {
                     return Colors.white;
-                  }
-                  else {
+                  } else {
                     return Colors.white;
                   }
                 }),
-
-
-            ),
+              ),
               child: Column(
                 children: [
                   const SizedBox(
@@ -262,13 +258,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   )
                 ],
               ),
-          ),
-          )],
+            ),
+          )
+        ],
       ),
     );
   }
 
-  SizedBox extractedBox({text,image}){
+  SizedBox extractedBox({text, image}) {
     return SizedBox(
       height: 200,
       width: 230,
@@ -288,6 +285,48 @@ class _MyHomePageState extends State<MyHomePage> {
                   blurRadius: 0,
                   offset: Offset(1, 2),
                 ),
+              ],
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 23,
+                ),
+                CircleAvatar(
+                  radius: 30,
+                  backgroundColor: Color.fromARGB(255, 55, 14, 201),
+                  child: Container(
+                    height: 78,
+                    width: 78,
+                    clipBehavior: Clip.hardEdge,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: Image.asset(
+                      "$image",
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: Text(
+                    "$text",
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      letterSpacing: 0.8,
+                      fontFamily: "Poppins-Reg",
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                )
               ],
             ),
           ),
@@ -342,7 +381,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: const Row(
+                    child:  Row(
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -356,7 +395,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   'Hello',
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 30,
+                                      fontSize: 22,
                                       fontWeight: FontWeight.normal),
                                 ),
                                 SizedBox(
@@ -393,7 +432,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
                       ),
-                      child: const CircularProgressIndicator(),
+                      child: FutureBuilder(
+                        builder: (cont),
+                      ),
                     ),
                   ),
                 ],
@@ -497,11 +538,22 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 220,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
-                  children: const [
-                    SizedBox(
+                  children: [
+                    const SizedBox(
                       width: 15,
                     ),
-                    //remaining elements
+                    extractedBox(
+                      text: "Vechile Registration",
+                      image: "assets/vregistration.jpg",
+                    ),
+                    extractedBox(
+                      text: "Birth Certificate",
+                      image: "assets/birthcertificate.png",
+                    ),
+                    extractedBox(
+                      text: "Income Certificate",
+                      image: "assets/income-certificate.jpg",
+                    ),
                   ],
                 ),
               ),
@@ -546,6 +598,34 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class DocContainer extends StatelessWidget {
+  const DocContainer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: NestedScrollView(
+        floatHeaderSlivers: true,
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[];
+        },
+        body: ListView.builder(
+          itemCount: 30,
+          padding: EdgeInsets.all(10),
+          itemBuilder: (BuildContext context, int index) {
+            return SizedBox(
+              height: 50,
+              child: Center(
+                child: Text("Item $index"),
+              ),
+            );
+          },
         ),
       ),
     );
