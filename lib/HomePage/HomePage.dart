@@ -433,7 +433,21 @@ class _MyHomePageState extends State<MyHomePage> {
                         borderRadius: BorderRadius.circular(50),
                       ),
                       child: FutureBuilder(
-                        builder: (cont),
+                        future: getDocInfo("profile"),
+                        builder: (context, snapshot){
+                          if(snapshot.connectionState==ConnectionState.waiting){
+                            return const CircularProgressIndicator();
+                          }
+                          else{
+                            if(snapshot.data=="empty"){
+                              return Container();
+                            }else{
+                              return Image.network("Snapshot.data",
+                                fit: BoxFit.cover,
+                              );
+                            }
+                          }
+                        },
                       ),
                     ),
                   ),
