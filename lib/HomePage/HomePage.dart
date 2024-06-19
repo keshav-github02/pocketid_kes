@@ -2,6 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:pocketid_kes/menuItems/myProfile.dart';
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
@@ -381,7 +383,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child:  Row(
+                    child: Row(
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -434,15 +436,16 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       child: FutureBuilder(
                         future: getDocInfo("profile"),
-                        builder: (context, snapshot){
-                          if(snapshot.connectionState==ConnectionState.waiting){
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
                             return const CircularProgressIndicator();
-                          }
-                          else{
-                            if(snapshot.data=="empty"){
+                          } else {
+                            if (snapshot.data == "empty") {
                               return Container();
-                            }else{
-                              return Image.network("Snapshot.data",
+                            } else {
+                              return Image.network(
+                                "Snapshot.data",
                                 fit: BoxFit.cover,
                               );
                             }
@@ -588,7 +591,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       quickLinks(
                           text: "My Profile",
                           icon: Icons.person_add_alt_1_outlined,
-                          ontap: () {}),
+                          ontap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MyProfile()));
+                          }),
                       const SizedBox(
                         width: 25,
                       ),
