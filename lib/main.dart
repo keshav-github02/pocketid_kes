@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pocketid_kes/HomePage/HomePage.dart';
+import 'package:pocketid_kes/menuItems/myProfile.dart';
 
 import 'SplashScreen/SplashScreen.dart';
 
@@ -14,9 +16,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "PocketID",
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
-      darkTheme: ThemeData.light(),
-      home: const SplashScreen(),
+      //themeMode: provider.themeMode,
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      home: MyProfile(),
+      //home: const SplashScreen(),
     );
   }
 }

@@ -18,23 +18,26 @@ class _MyProfileState extends State<MyProfile> {
 Container builtContainer(title,info){
   return Container(
     height: 68,
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(title,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-        Row(
-          children: [
-            Text(info,style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),),
-            SizedBox(
-              width: 10,
-            ),
-            Icon(
-              Icons.edit,
-              color: Colors.grey,
-            ),
-          ],
-        ),
-      ],
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text('${title}',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+          Row(
+            children: [
+              Text('${info}',style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),),
+              SizedBox(
+                width: 10,
+              ),
+              Icon(
+                Icons.edit,
+                color: Colors.grey,
+              ),
+            ],
+          ),
+        ],
+      ),
     ),
   );
 }
@@ -57,32 +60,47 @@ Container builtContainer(title,info){
             ),
 
           ),
-          Column(
-            children: [
-              GestureDetector(
-                onTap: (){
-                  print('Chang Profile Picture');
-                },
-                child: CircleAvatar(
-                  radius: 68,
-                  backgroundColor: Colors.grey[300],
-                  child: Container(
-                    height: 120,
-                    width: 120,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(100),
-                    ),
-                    child: Icon(
-                      Icons.camera_alt,
-                      size: 50,
+          Transform.translate(
+            offset: Offset(0, -70),
+            child: Column(
+              children: [
+                GestureDetector(
+                  onTap: (){
+                    print('Chang Profile Picture');
+                  },
+                  child: CircleAvatar(
+                    radius: 68,
+                    backgroundColor: Colors.grey[300],
+                    child: Container(
+                      height: 120,
+                      width: 120,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      child: FutureBuilder(
+                        future: futureFunction(),
+                        builder: (context,snapshot){
 
+                          if(snapshot.connectionState==ConnectionState.waiting){
+                            return Center(child:  CircularProgressIndicator());
+                          }
+                         else{
+                           if(snapshot.data=="empty"){
+                             return Icon(Icons.add_a_photo,size: 100,color: Colors.grey,);
+                           }
+                           else{
+                             return CatchedN
+                           }
+                          }
+                        },
+                      ),
                     ),
+
                   ),
-
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           SizedBox(
             height: 20,
