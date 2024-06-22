@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:cached_network_image/cached_network_image.dart';
 class MyProfile extends StatefulWidget {
   const MyProfile({super.key});
 
@@ -90,7 +90,11 @@ Container builtContainer(title,info){
                              return Icon(Icons.add_a_photo,size: 100,color: Colors.grey,);
                            }
                            else{
-                             return CatchedN
+                             return CatchedNetworkImage(
+                              Placeholder: (context,url)=>CircularProgressIndicator(),
+                               imageUrl:"${profileUrl}",
+                               fit: BoxFit.cover,
+                             );
                            }
                           }
                         },
