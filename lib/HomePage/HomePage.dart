@@ -5,6 +5,7 @@ import 'dart:math' as math;
 
 import 'package:pocketid_kes/menuItems/myProfile.dart';
 import 'package:pocketid_kes/menuItems/settings.dart';
+import 'package:pocketid_kes/utils/navDrawer.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -188,7 +189,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             style: const TextStyle(
                               letterSpacing: 0.8,
                               fontFamily: "Poppins-Reg",
-                              color: Colors.white,
+                              color: Colors.black,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -370,10 +371,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      // drawer: NewDrawer(
-      //   username :firstname
-      //       email
-      // ),
+   drawer: NavDrawer(email: email, username: firstName),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

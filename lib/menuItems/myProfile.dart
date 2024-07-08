@@ -14,7 +14,7 @@ class _MyProfileState extends State<MyProfile> {
   String email= "";
   String gender= "";
   String dob="02-02-2004";
-
+  String profileUrl="empty";
 Container builtContainer(title,info){
   return Container(
     height: 68,
@@ -47,6 +47,7 @@ Container builtContainer(title,info){
     return Scaffold(
       appBar: AppBar(
         title: Text("My Profille"),
+        backgroundColor: Color.fromARGB(255, 55, 14, 201),
       ),
       body: Column(
         children: [
@@ -90,8 +91,8 @@ Container builtContainer(title,info){
                              return Icon(Icons.add_a_photo,size: 100,color: Colors.grey,);
                            }
                            else{
-                             return CatchedNetworkImage(
-                              Placeholder: (context,url)=>CircularProgressIndicator(),
+                             return CachedNetworkImage(
+                              placeholder: (context,url)=>CircularProgressIndicator(),
                                imageUrl:"${profileUrl}",
                                fit: BoxFit.cover,
                              );
@@ -110,9 +111,12 @@ Container builtContainer(title,info){
             height: 20,
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text('First Name',style: TextStyle(
                 fontSize: 20,
+                color: Colors.black,
+                letterSpacing: 0.5,
                 fontWeight: FontWeight.bold,
               ),),
 
@@ -121,50 +125,55 @@ Container builtContainer(title,info){
           SizedBox(
             height: 15,
           ),
-          Container(
-            height: 205,
-            decoration: BoxDecoration(
-              boxShadow:[
-                BoxShadow(
-                  color: Color.fromARGB(103, 104, 103, 103),
-                  blurRadius: 5,
-                  spreadRadius: 2.5,
-                  offset: Offset(2, 1),
-                ),
-                BoxShadow(
-                  color: Colors.white,
-                  blurRadius: 0,
-                  spreadRadius: 0,
-                  offset: Offset(0, 0),
-                ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 13),
+            child: Container(
+              height: 255,
+              decoration: BoxDecoration(
+                boxShadow:[
+                  BoxShadow(
+                    color: Color.fromARGB(103, 104, 103, 103),
+                    blurRadius: 5,
+                    spreadRadius: 2.5,
+                    offset: Offset(2, 1),
+                  ),
+                  BoxShadow(
+                    color: Colors.white,
+                    blurRadius: 0,
+                    spreadRadius: 0,
+                    offset: Offset(0, 0),
+                  ),
 
-              ],
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Column(
-              children: [
-                builtContainer('DOB', "$dob"),
-                Divider(
-                  color: Colors.grey,
-                  thickness: 1,
-                ),
-                builtContainer('Gender', "$gender"),
-                Divider(
-                  color: Colors.grey,
-                  thickness: 1,
-                ),
-                builtContainer("Email", "$email"),
-                Divider(
-                  color: Colors.grey,
-                  thickness: 1,
-                ),
-              ],
+                ],
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(
+                children: [
+                  builtContainer('DOB', "$dob"),
+                  Divider(
+                    color: Colors.grey,
+                    thickness: 1,
+                  ),
+                  builtContainer('Gender', "$gender"),
+                  Divider(
+                    color: Colors.grey,
+                    thickness: 1,
+                  ),
+                  builtContainer("Email", "$email"),
+
+                ],
+              ),
             ),
           ),
         ],
       ),
     );
   }
+}
+
+Future<String> futureFunction() async{
+  String url= "empty";
+  return url;
 }
 
 class CustomClipperPath extends CustomClipper<Path> {

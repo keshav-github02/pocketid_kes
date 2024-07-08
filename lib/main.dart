@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pocketid_kes/HomePage/HomePage.dart';
 import 'package:pocketid_kes/menuItems/myProfile.dart';
+import 'package:pocketid_kes/menuItems/settings.dart';
 
 import 'SplashScreen/SplashScreen.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       //themeMode: provider.themeMode,
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
-      home: MyProfile(),
+      home: SplashScreen(),
       //home: const SplashScreen(),
     );
   }
