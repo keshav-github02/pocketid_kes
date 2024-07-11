@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pocketid_kes/HomePage/DocImagePage.dart';
 import 'package:pocketid_kes/HomePage/HomePage.dart';
 import 'package:pocketid_kes/menuItems/myProfile.dart';
 import 'package:pocketid_kes/menuItems/settings.dart';

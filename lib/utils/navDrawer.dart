@@ -70,7 +70,7 @@ class _NavDrawerState extends State<NavDrawer> {
                       ),
                       child: GestureDetector(
                         onTap: (){},
-                        child: T,
+
                       ),
                     ),)
                   ],
