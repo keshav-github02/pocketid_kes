@@ -146,7 +146,9 @@ class _MyHomePageState extends State<MyHomePage> {
             height: 170,
             child: ElevatedButton(
               onPressed: () {
-                MaterialPageRoute route =MaterialPageRoute(builder: (context)=>DocImagePage(docName: '$doc', text: text));
+                Navigator.push(context,
+                MaterialPageRoute(builder: (context)=>DocImagePage(docName: '$doc', text: text))
+                );
               },
               style: ButtonStyle(
                 shape: WidgetStateProperty.all<RoundedRectangleBorder>(
@@ -529,22 +531,22 @@ class _MyHomePageState extends State<MyHomePage> {
                     extractedContainer(
                         text: "Aadhar Card",
                         image: "assets/aadhaar.png",
-                        doc: "aadhar",
+                        doc: "Aadhar Card",
                         isSaved: 1),
                     extractedContainer(
                         text: "Pan Card",
                         image: "assets/pan.png",
-                        doc: "aadhar",
+                        doc: "Pan Card",
                         isSaved: 2),
                     extractedContainer(
                         text: "Driving License",
                         image: "assets/others.png",
-                        doc: "driving",
+                        doc: "Driving License",
                         isSaved: 3),
                     extractedContainer(
                         text: "Covid Vaccine",
                         image: "assets/others.png",
-                        doc: "vaccine",
+                        doc: "Vaccination Certificate",
                         isSaved: 4),
                     //remaining elements
                   ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class DocImagePage extends StatefulWidget {
   const DocImagePage({super.key, required this.docName, required this.text});
 
@@ -17,16 +18,16 @@ class _DocImagePageState extends State<DocImagePage> {
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
-            onPressed: ()=>Navigator.of(context).pop(),
+            icon: const Icon(Icons.arrow_back_ios),
+            onPressed: () => Navigator.of(context).pop(),
           ),
           backgroundColor: Colors.white,
-          foregroundColor: Color.fromARGB(255, 55, 14, 201),
+          foregroundColor: const Color.fromARGB(255, 55, 14, 201),
           elevation: 0,
           centerTitle: true,
           title: Text(
             widget.docName,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
@@ -37,7 +38,7 @@ class _DocImagePageState extends State<DocImagePage> {
             height: 725,
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Padding(
@@ -47,7 +48,7 @@ class _DocImagePageState extends State<DocImagePage> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: Colors.white,
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                           color: Color.fromARGB(71, 158, 158, 158),
                           offset: Offset(
@@ -67,7 +68,9 @@ class _DocImagePageState extends State<DocImagePage> {
                     ),
                     child: Column(
                       children: [
-                        SizedBox(height: 20,),
+                        const SizedBox(
+                          height: 20,
+                        ),
                         Row(
                           children: [
                             SizedBox(
@@ -77,7 +80,7 @@ class _DocImagePageState extends State<DocImagePage> {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Padding(
@@ -128,6 +131,73 @@ class _DocImagePageState extends State<DocImagePage> {
                             ),
                           ),
                         ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          height: 60,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 35),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const Text(
+                                  "Document updated?",
+                                  style: TextStyle(fontSize: 15),
+                                ),
+                                GestureDetector(
+                                  onTap: () {},
+                                  child: Container(
+                                    height: 30,
+                                    width: 30,
+                                    decoration: BoxDecoration(
+                                      color: const Color.fromARGB(255, 55, 14, 201),
+                                      borderRadius: BorderRadius.circular(50),
+                                    ),
+                                    child: const Icon(
+                                      Icons.camera_alt_rounded,
+                                      size: 18,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {},
+                                  child: Container(
+                                    height: 30,
+                                    width: 30,
+                                    decoration: BoxDecoration(
+                                      color: const Color.fromARGB(255, 55, 14, 201),
+                                      borderRadius: BorderRadius.circular(50),
+                                    ),
+                                    child: const Icon(
+                                      Icons.photo_rounded,
+                                      size: 18,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {},
+                                  child: Container(
+                                    height: 30,
+                                    width: 30,
+                                    decoration: BoxDecoration(
+                                      color: const Color.fromARGB(255, 55, 14, 201),
+                                      borderRadius: BorderRadius.circular(50),
+                                    ),
+                                    child: const Icon(
+                                      Icons.delete_rounded,
+                                      size: 18,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   ),
